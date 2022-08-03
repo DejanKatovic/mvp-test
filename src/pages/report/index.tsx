@@ -16,6 +16,8 @@ export const Report: React.FC = () => {
   const [endDate, setEndDate] = useState<Date | null>(new Date("12.31.2021"))
   const [reports, setReports] = useState<IReport[]>([])
   const [reportError, setReportError] = useState<boolean>(false)
+  const [activeProject, setActiveProject] = useState<string>("all")
+  const [activeGateway, setActiveGateway] = useState<string>("all")
 
   const {
     data: projectData,
@@ -42,6 +44,8 @@ export const Report: React.FC = () => {
 
   const onGenerate = useCallback(() => {
     setReportError(false)
+    setActiveProject(selectedProject)
+    setActiveGateway(selectedGateway)
     getReports({
       from: format(startDate || new Date("01.01.2021"), "yyyy-MM-dd"),
       to: format(endDate || new Date("21.31.2021"), "yyyy-MM-dd"),
