@@ -1,4 +1,4 @@
-import React, { createContext } from "react"
+import React, { createContext, useContext } from "react"
 import { Box, CircularProgress, Typography } from "src/UILibrary"
 
 import { useGetAllUsers } from "src/queries/users"
@@ -13,7 +13,7 @@ interface SessionProviderProps {
 export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) => {
   const { data, isLoading, error } = useGetAllUsers()
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return (
       <Box
         sx={{
@@ -29,7 +29,7 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) =>
     )
   }
 
-  if (error || !data.data.data.length) {
+  if (error || !data?.data.data.length) {
     return (
       <Box
         sx={{
@@ -48,4 +48,8 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({ children }) =>
   }
 
   return <UserContext.Provider value={data.data.data[0]}>{children}</UserContext.Provider>
+}
+
+export const useUser = () => {
+  return useContext(UserContext)
 }

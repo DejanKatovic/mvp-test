@@ -11,10 +11,12 @@ import {
   Typography,
 } from "src/UILibrary"
 
+import { useUser } from "src/modules/sessions"
 import LogoImage from "src/assets/imgs/logo.png"
 
 export const Header: React.FC = () => {
   const navigate = useNavigate()
+  const user = useUser()
 
   return (
     <AppBar
@@ -46,9 +48,11 @@ export const Header: React.FC = () => {
           <Avatar
             sx={{ bgcolor: "primary.light", borderRadius: "5px", fontWeight: 700, mr: "11px" }}
           >
-            JD
+            {user ? `${user.firstName[0]}${user.lastName[0]}` : ""}
           </Avatar>
-          <Typography.Action sx={{ color: "primary.main" }}>John Doe</Typography.Action>
+          <Typography.Action sx={{ color: "primary.main" }}>
+            {user ? `${user.firstName} ${user.lastName}` : ""}
+          </Typography.Action>
         </Box>
       </Toolbar>
     </AppBar>

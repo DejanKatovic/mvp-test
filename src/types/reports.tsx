@@ -16,3 +16,42 @@ export interface IProjectsResult {
   data: IProject[]
   error: string | null
 }
+
+export interface IGateway {
+  gatewayId: string
+  userIds: string[]
+  name: string
+  type: string
+  apiKey: string
+  secondaryApiKey: string
+  description: string
+}
+
+export interface IGatewaysResult {
+  code: string
+  data: IGateway[]
+  error: string | null
+}
+
+export interface IReportInputs {
+  from: string
+  to: string
+  projectId: string
+  gatewayId: string
+}
+
+export interface IReport {
+  paymentId: string
+  amount: number
+  projectId: string
+  gatewayId: string
+  userIds: string[]
+  modified: string
+  created: string
+}
+
+export interface IReportsResult {
+  code: string
+  data: IReport[]
+  error: string | null
+}
