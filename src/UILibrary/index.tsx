@@ -7,6 +7,7 @@ export {
   Avatar,
   CircularProgress,
   MenuItem,
+  Collapse,
 } from "@mui/material"
 
 export type {SelectChangeEvent} from "@mui/material"

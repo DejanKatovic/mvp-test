@@ -48,7 +48,7 @@ export const ReportHeader: React.FC<ReportHeaderProps> = ({
     setSelectedGateway(e.target.value as string)
   }
   return (
-    <Box sx={{ flexShrink: 0, display: "flex", mt: "8px", alignItems: "flex-start" }}>
+    <Box sx={{ flexShrink: 0, display: "flex", mt: "8px", alignItems: "flex-start", mb: "27px" }}>
       <Box sx={{ flexGrow: 1, mr: "23px" }}>
         <Typography.Title sx={{ color: "text.primary", mb: "4px" }}>Reports</Typography.Title>
         <Typography.Action sx={{ color: "text.secondary" }}>

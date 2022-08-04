@@ -5,6 +5,10 @@ import { AxiosResponse, AxiosError } from "axios"
 
 import { ReportHeader } from "./components/reportHeader"
 import { NoReport } from "./components/noReport"
+import { AllReports } from "./components/allReports"
+import { GatewayReports } from "./components/gatewayReport"
+import { ProjectReports } from "./components/projectReport"
+import { SpecificReports } from "./components/specificReports"
 
 import { useGetAllProjects, useGetAllGateways, useGetReports } from "src/queries/reports"
 import { IReport, IReportsResult } from "src/types/reports"
@@ -120,7 +124,41 @@ export const Report: React.FC = () => {
           </Typography.Title>
         </Box>
       ) : reports.length ? (
-        <></>
+        activeProject === "all" ? (
+          activeGateway === "all" ? (
+            <AllReports
+              projects={projectData.data.data}
+              gateways={gatewayData.data.data}
+              reports={reports}
+            />
+          ) : (
+            <GatewayReports
+              projects={projectData.data.data}
+              gatewayName={
+                gatewayData.data.data.find(items => items.gatewayId === activeGateway)?.name || ""
+              }
+              reports={reports}
+            />
+          )
+        ) : activeGateway === "all" ? (
+          <ProjectReports
+            projectName={
+              projectData.data.data.find(item => item.projectId === activeProject)?.name || ""
+            }
+            gateways={gatewayData.data.data}
+            reports={reports}
+          />
+        ) : (
+          <SpecificReports
+            projectName={
+              projectData.data.data.find(item => item.projectId === activeProject)?.name || ""
+            }
+            gatewayName={
+              gatewayData.data.data.find(items => items.gatewayId === activeGateway)?.name || ""
+            }
+            reports={reports}
+          />
+        )
       ) : (
         <NoReport />
       )}

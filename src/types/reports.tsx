@@ -55,3 +55,17 @@ export interface IReportsResult {
   data: IReport[]
   error: string | null
 }
+
+export interface IReportGroup {
+  key: string
+  name: string
+  total: number
+  data: (IReport & { gatewayName: string })[]
+}
+
+export interface IRowData {
+  date: string
+  gateway: string
+  transactionId: string
+  amount: string
+}
